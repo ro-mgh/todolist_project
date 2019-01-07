@@ -26,6 +26,8 @@ app.use('/api/user', userRouter)
 app.use('/api/item', itemRouter)
 app.use('/api/list', listRouter)
 
+// static to css
+
 app.set('view engine', 'pug')
 
 app.use('/index', (req, res) => {
