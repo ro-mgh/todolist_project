@@ -4,7 +4,7 @@
 - [Resources](#resources)
 - [Requirements](#requirements)
 - [Course](#course)
-- [Exercises](#exercises)
+- [Exercises](#excercises)
   - [Hello world Express](#hello-world-express)
   - [Routing](#routing)
   - [Create Schemas](#create-schemas)
@@ -28,10 +28,8 @@ The following are suggested to be installed on your machine before beginning the
 * [Nodemon](https://nodemon.io/)
 
 ## Course
-This course has two parts, slides and exercises. The slides describe the exerices in detail. Each exercise has a starting branch and solution branch. Example `lesson-1` and `lesson-1-solution`.
+This course has two parts, slides and excercises. The slides describe the excerices in detail. Each excercise has a starting branch and solution branch. Example `lesson-1` and `lesson-1-solution`.
 ## Exercises
-** Important: Please check out to each exercise branch as the course progresses. 
-
 ### Hello world Express
 
 Note: Before running the tests for the exercise, ensure that mongoDB is running. Please run `mongo` in a new terminal.
