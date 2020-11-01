@@ -48,7 +48,7 @@ userSchema.pre('save', function(next) {
     this.password = hash
     next()
   })
-})
+}) 
 
 userSchema.methods.checkPassword = function(password) {
   const passwordHash = this.password

@@ -170,7 +170,7 @@ describe('Authentication:', () => {
       expect.assertions(2)
 
       let req = { headers: { authorization: newToken({ id: '123sfkj' }) } }
-      let res = {
+      let res = { 
         status(status) {
           expect(status).toBe(401)
           return this
