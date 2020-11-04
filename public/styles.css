@@ -1,0 +1,349 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.wrapper {
+	margin: 0 auto;
+}
+
+body {
+    font-family: "Cabin", Arial, Geneva, sans-serif;
+    background-color: rgb(255,255,255) ;
+	margin: 0px;
+	padding: 0px;
+}
+
+
+
+/* header and logo */
+
+header {
+    padding: 0 5%;
+    display: flex;
+    justify-content: center;
+}
+
+.logo-text {
+    color: black;
+  
+}
+
+/* navigation */
+
+.navigation {
+  list-style-type: none;
+  margin: 0 5%;
+  height: 65px;
+  border-bottom: 8px solid #116466;
+  overflow: auto;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+}
+
+.navigation-start {
+    margin: 0 5%;
+    width: 80%;
+    display: flex;
+    flex-flow: row wrap;
+    align-content: center;
+    
+}
+
+.navigation-start a {
+    color: #2C3531;
+    text-decoration: none;
+    font-size: 45px;
+    font-family: impact;
+}
+
+.navigation-end {
+    margin: 0 5%;
+    width: 20%;
+    display: flex;
+    flex-flow: row wrap;
+    align-content: center;
+}
+.navigation-end a {
+    color: #116466;
+    text-decoration: none;
+    font-family: georgia;
+    font-style: oblique;
+    font-size: large;
+    transition-duration: 0.3s;
+
+}
+
+.navigation-end a:hover {
+    color: #167f81;
+    text-decoration: underline;
+}
+
+/* main field */
+
+.main-headers {
+    margin: 10px;
+    color: black;
+    font-size: 25px;
+    font-family: georgia;
+}
+
+.main-field {
+    background-color: rgb(255,255,255);
+    border-bottom: 2px solid #116466;
+    min-height: 400px;
+    margin: 0 5%;
+    display: grid;
+    grid-gap: 1em;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 3fr;
+}
+
+
+/* input task */
+
+.add-new-tasks {
+    border-bottom: 2px solid #116466;
+    margin: 2.5% 2.5% 2.5% 5%;
+    padding: 1%;
+    display: flex;
+    flex-flow: column;
+}
+
+.input-task {
+    font-size: 17px;
+    padding: 5px 10px;
+    margin: 0;
+    height: 50px;
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid #dddfe2;
+}
+
+.add-to-list,
+.enter-to-system-button {
+    margin: 5px 10px;
+    width: 20%;
+    height: 30px;
+    border-radius: 20px;
+    background-color: #116466;
+    border: 1px solid #116466;
+    color: white;
+    transition-duration: 0.3s;
+}
+
+.add-to-list:hover,
+.enter-to-system-button:hover {
+    background-color: #208688;
+}
+
+.add-to-list:active,
+.enter-to-system-button:active {
+    background-color: #0e5455;
+}
+
+
+/* in progress field */
+
+.in-progress-tasks {
+    background-color: #EFE2BA;
+    border-radius: 10px;
+    margin: 2.5% 2.5% 2.5% 5%;
+    padding: 1%;
+    display: flex;
+    flex-flow: column;
+}
+
+.task-in-progress {
+    color: black;
+    border-bottom: 1px solid #2C3531;
+    padding: 2px;
+    margin: 5px 0;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.task-in-progress label:hover {
+    color: rgb(82, 78, 78);
+}
+
+.delete-task {
+    float: right;
+    font-size: large;
+    margin: 0;
+    background-color: #EFE2BA;
+    border: 1px solid #EFE2BA;
+    color: black;
+}
+
+.delete-task:hover {
+    background-color: rgb(235, 232, 224)
+}
+
+
+
+
+/* completed tasks */
+
+.completed-tasks {
+    background-color: #EFE2BA;
+    border-radius: 10px;
+    margin: 5% 5% 5% 5%;
+    grid-column: 2/3;
+    grid-row: 1/3;
+    padding: 1%;
+    display: flex;
+    flex-flow: column;
+}
+
+.task-completed {
+    color: black;
+    border-bottom: 1px solid #2C3531;
+    padding: 2px;
+    margin: 5px 0;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.completed-tasks label {
+    text-decoration: line-through;
+}
+.completed-tasks label:hover {
+    color: rgb(82, 78, 78);
+}
+
+
+/* registration  */
+
+.registration {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.registration-form {
+    height: 270px;
+    width: 400px;
+    border: 1.5px solid #2C3531;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    padding: 1%;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.registration-form p {
+    margin: 10px;
+    color: black;
+    font-size: 25px;
+    font-family: georgia;
+    text-align: center;
+}
+
+.registration-form a {
+    color: black;
+    text-decoration: underline;
+    font-family: georgia;
+    font-style: oblique;
+    font-size: medium;
+    text-align: center;
+}
+
+
+
+[class*='email']  {
+    font-size: 17px;
+    padding: 14px 16px;
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid #dddfe2;
+}
+
+[class*='password'] {
+    font-size: 17px;
+    padding: 14px 16px;
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid #dddfe2;
+}
+
+.enter-to-system-button {
+    margin: 0;
+    width: 100%;  
+}
+
+
+/* footer */
+
+footer {
+    display: flex;
+    justify-content: center;
+}
+
+
+ /* images handling */
+
+.logo-img {
+    width: 100%;
+    height: auto;
+}
+
+.git-img {
+    width: 30px;
+    height: 30px;
+}
+
+/* checkbox staff */
+
+/* Base for label styling */
+[type="checkbox"]:not(:checked),
+[type="checkbox"]:checked {
+  position: absolute;
+  left: -9999px;
+}
+[type="checkbox"]:not(:checked) + label,
+[type="checkbox"]:checked + label {
+  position: relative;
+  padding-left: 1.95em;
+  cursor: pointer;
+}
+
+/* checkbox aspect */
+[type="checkbox"]:not(:checked) + label:before,
+[type="checkbox"]:checked + label:before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0;
+  width: 1.1em; height: 1.1em;
+  border: 2px solid #ccc;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: inset 0 1px 3px rgba(0,0,0,.1);
+}
+/* checked mark aspect */
+[type="checkbox"]:not(:checked) + label:after,
+[type="checkbox"]:checked + label:after {
+  content: '\2713\0020';
+  position: absolute;
+  top: .15em; left: .22em;
+  font-size: 1em;
+  line-height: 0.8;
+  color: #116466;
+  transition: all .2s;
+  font-family: 'Lucida Sans Unicode', 'Arial Unicode MS', Arial;
+}
+/* checked mark aspect changes */
+[type="checkbox"]:not(:checked) + label:after {
+  opacity: 0;
+  transform: scale(0);
+}
+[type="checkbox"]:checked + label:after {
+  opacity: 1;
+  transform: scale(1);
+}
+

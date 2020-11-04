@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,21 +9,20 @@
     <script src="project.js" defer></script>
     <title>ToDoList</title>
 </head>
+
 <body>
     <div class="wrapper">
         <header>
             <a href="./index">
-            <img class="logo-img" src="pictures/lion_logo.png" alt="logo"></img>
+            <img class="logo-img" src="./pictures/lion_logo.png" alt="logo"></img>
             </a>
         </header>
-
-        //- to delete this??
         <div class="background"></div>
         <nav>
             <div class="navigation">
                 <div class="navigation-start">
                     <li>
-                        <a href="./index">Let's do it</a>
+                        <a href="./index">Let's meet</a>
                     </li>
                 </div>
                 <div class="navigation-end">
@@ -32,36 +32,17 @@
                         <a href="./signup">Signup</a>
                     </li>
                 </div>
-            </ul>
+                </ul>
             </div>
         </nav>
-        <div class="main-field">
-
-            <div class="add-new-tasks">
-                <p class="main-headers">Add new task</p>
-                <input class="input-task" placeholder="I should do ..." />
-                <button class="add-to-list">Add to list</button>
+        <div class="main-field registration">
+            <div class="registration-form"> 
+                <p>Login</p>
+                <input class="signin-email" placeholder="Enter your email" />
+                <input class="signin-password" placeholder="Enter your password" />
+                <button class="enter-to-system-button"> Log in</button>
+                <a href="./signup">I dont have account</a>
             </div>
-
-            <div class="in-progress-tasks">
-                <p class="main-headers">Current tasks</p>   
-                <div class="task-in-progress">
-                    <input type="checkbox" id = "task 1">
-                    <label for = 'task 1'>Make a call</label>
-                    <button class="delete-task">×</button>
-                </div>
-    
-            </div>
-
-            <div class="completed-tasks">
-                <p class="main-headers">Completed tasks</p>
-                <div class="task-completed">
-                    <input type="checkbox" id="task 999">
-                    <label for='task 999'>do it</label>
-                    <button class="delete-task">×</button>
-                </div>
-            </div>
-
         </div>
 
         <footer>
@@ -75,4 +56,5 @@
     </div>
 
 </body>
+
 </html>

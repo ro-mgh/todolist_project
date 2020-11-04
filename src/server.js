@@ -8,6 +8,7 @@ import userRouter from './resources/user/user.router'
 import itemRouter from './resources/item/item.router'
 import listRouter from './resources/list/list.router'
 import { signin, signup, protect } from './utils/auth'
+const path = require('path')
 
 export const app = express()
 
@@ -18,8 +19,8 @@ app.use(json())
 app.use(urlencoded({ extended: true }))
 app.use(morgan('dev'))
 
-app.post('/signup', signup)
-app.post('/signin', signin)
+// app.post('/signup', signup)
+// app.post('/signin', signin)
 
 app.use('/api', protect)
 app.use('/api/user', userRouter)
@@ -27,11 +28,20 @@ app.use('/api/item', itemRouter)
 app.use('/api/list', listRouter)
 
 // static to css
+app.use(express.static(path.join(__dirname, '../public')))
 
 app.set('view engine', 'pug')
 
 app.use('/index', (req, res) => {
   res.render('main')
+})
+
+app.use('/signin', (req, res) => {
+  res.render('signin')
+})
+
+app.use('/signup', (req, res) => {
+  res.render('signup')
 })
 
 export const start = async () => {
