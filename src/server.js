@@ -8,7 +8,8 @@ import userRouter from './resources/user/user.router'
 import itemRouter from './resources/item/item.router'
 import listRouter from './resources/list/list.router'
 import { signin, signup, protect } from './utils/auth'
-const path = require('path')
+import path from 'path'
+import cookieParser from 'cookie-parser'
 
 export const app = express()
 
@@ -18,21 +19,27 @@ app.use(cors())
 app.use(json())
 app.use(urlencoded({ extended: true }))
 app.use(morgan('dev'))
+app.use(cookieParser())
 
-// app.post('/signup', signup)
-// app.post('/signin', signin)
+app.post('/signup', signup)
+app.post('/signin', signin)
 
-app.use('/api', protect)
+// app.use('/mytodolist', protect)
 app.use('/api/user', userRouter)
 app.use('/api/item', itemRouter)
 app.use('/api/list', listRouter)
+
+app.get('/test', (req, res) => {
+  let cookie = req.cookies.token
+  res.send({ message: cookie })
+})
 
 // static to css
 app.use(express.static(path.join(__dirname, '../public')))
 
 app.set('view engine', 'pug')
 
-app.use('/index', (req, res) => {
+app.use('/mytodolist', (req, res) => {
   res.render('main')
 })
 

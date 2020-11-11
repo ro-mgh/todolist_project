@@ -13,23 +13,6 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true
-    },
-    settings: {
-      theme: {
-        type: String,
-        required: true,
-        default: 'dark'
-      },
-      notifications: {
-        type: Boolean,
-        required: true,
-        default: true
-      },
-      compactMode: {
-        type: Boolean,
-        required: true,
-        default: false
-      }
     }
   },
   { timestamps: true }
@@ -48,7 +31,7 @@ userSchema.pre('save', function(next) {
     this.password = hash
     next()
   })
-}) 
+})
 
 userSchema.methods.checkPassword = function(password) {
   const passwordHash = this.password

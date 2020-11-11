@@ -20,14 +20,20 @@ export const signup = async (req, res) => {
   const newEmail = req.body.email
   const passw = req.body.password
   if (!newEmail || !passw) {
-    return res.status(400).send({ message: 'no data' })
+    return res.status(400).redirect('/signup')
   }
 
-  const newUser = await User.create({ email: newEmail, password: passw })
+  try {
 
-  const token = newToken(newUser)
+    const newUser = await User.create({ email: newEmail, password: passw })
 
-  return res.status(201).send({ token })
+    const token = newToken(newUser)
+    res.cookie('token', token, { httpOnly: true }, { signed: true });
+    res.status(200).redirect('/mytodolist')
+    // res.header('Authorization', 'Bearer ' + token).render('main')
+  } catch (e) {
+    res.status(400).send({message: "error"})
+  }
 }
 
 export const signin = async (req, res) => {
@@ -52,16 +58,17 @@ export const signin = async (req, res) => {
 
   const token = newToken(existingUser)
   // send new token
-  return res.status(201).send({ token })
+  res.cookie('token', token, { httpOnly: true }, { signed: true });
+  return res.status(200).redirect('/test');
 }
 
 export const protect = async (req, res, next) => {
-  const token = req.headers.authorization
+  const token = req.header.Authorization
 
   if (!isCorrectToken(token)) {
     return res.status(401).end()
   }
-//{_id: payload.id};
+
   try {
     const payload = await verifyToken(token.split('Bearer ')[1])
     const user = await User.findById(payload.id).select('-password').lean().exec()
