@@ -24,15 +24,17 @@ app.use(cookieParser())
 app.post('/signup', signup)
 app.post('/signin', signin)
 
-// app.use('/mytodolist', protect)
+app.use('/mytodolist', protect)
 app.use('/api/user', userRouter)
 app.use('/api/item', itemRouter)
 app.use('/api/list', listRouter)
 
+// test res**
 app.get('/test', (req, res) => {
   let cookie = req.cookies.token
   res.send({ message: cookie })
 })
+// **********
 
 // static to css
 app.use(express.static(path.join(__dirname, '../public')))

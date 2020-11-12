@@ -28,7 +28,7 @@ export const signup = async (req, res) => {
     const newUser = await User.create({ email: newEmail, password: passw })
 
     const token = newToken(newUser)
-    res.cookie('token', token, { httpOnly: true }, { signed: true });
+    res.cookie('token', 'Bearer ' + token, { httpOnly: true }, { signed: true });
     res.status(200).redirect('/mytodolist')
     // res.header('Authorization', 'Bearer ' + token).render('main')
   } catch (e) {
@@ -58,15 +58,15 @@ export const signin = async (req, res) => {
 
   const token = newToken(existingUser)
   // send new token
-  res.cookie('token', token, { httpOnly: true }, { signed: true });
-  return res.status(200).redirect('/test');
+  res.cookie('token', 'Bearer ' + token, { httpOnly: true }, { signed: true });
+  return res.status(200).redirect('/mytodolist');
 }
 
 export const protect = async (req, res, next) => {
-  const token = req.header.Authorization
+  const token = req.cookies.token
 
   if (!isCorrectToken(token)) {
-    return res.status(401).end()
+    return res.status(401).send({message:"not correct token"}).end()
   }
 
   try {
@@ -75,7 +75,7 @@ export const protect = async (req, res, next) => {
     req.user = user;
     next()
   } catch {
-    return res.status(401).end()
+    return res.status(401).send({ message: "token not found" }).end()
   }
 }
 
