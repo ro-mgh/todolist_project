@@ -3,16 +3,16 @@ import controllers from './item.controllers'
 
 const router = Router()
 
-// /api/item
+// /mytodolist/item
 router
   .route('/')
-  .get(controllers.getOne)
+  // .get(controllers.getOne)
   .post(controllers.createOne)
 
 // /api/item/:id
 router
   .route('/:id')
-  .get(controllers.getOne)
+  // .get(controllers.getOne)
   .put(controllers.updateOne)
   .delete(controllers.removeOne)
 

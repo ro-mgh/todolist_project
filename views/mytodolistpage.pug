@@ -16,7 +16,6 @@
             </a>
         </header>
 
-        //- to delete this??
         <div class="background"></div>
         <nav>
             <div class="navigation">
@@ -27,43 +26,38 @@
                 </div>
                 <div class="navigation-end">
                     <li>
-                        <a href="./signin">Signin</a>
-                        <span>/</span>
-                        <a href="./signup">Signup</a>
+                        <a href="./logout" class="logout">Logout</a>
                     </li>
                 </div>
             </ul>
             </div>
         </nav>
+        div.error-handler 
         <div class="main-field">
 
             <div class="add-new-tasks">
                 <p class="main-headers">Add new task</p>
+                div.error-handler #{error}
                 <input class="input-task" placeholder="I should do ..." />
                 <button class="add-to-list">Add to list</button>
             </div>
 
-            <div class="in-progress-tasks">
-                <p class="main-headers">Current tasks</p>   
-                <div class="task-in-progress">
-                    <input type="checkbox" id = "task 1">
-                    <label for = 'task 1'>Make a call</label>
-                    <button class="delete-task">×</button>
-                </div>
-    
-            </div>
+            div.in-progress-tasks
+                p.main-headers= "Current tasks"
+                each activeTask in activeTasks
+                 div(class="task-in-progress" data-index=activeTask._id)
+                    input(type='checkbox' id=`task_${activeTask._id}`)
+                    label(for=`task_${activeTask._id}`)= activeTask.name
+                    button.delete-task= '×'
 
-            <div class="completed-tasks">
-                <p class="main-headers">Completed tasks</p>
-                <div class="task-completed">
-                    <input type="checkbox" id="task 999">
-                    <label for='task 999'>do it</label>
-                    <button class="delete-task">×</button>
-                </div>
-            </div>
-
+            div.completed-tasks
+                p.main-headers= "Completed tasks"
+                each completedTask in completedTasks
+                 div(class="task-completed" data-index=completedTask._id)
+                    input(type='checkbox' id=`task_${completedTask._id}` checked=true)
+                    label(for=`task_${completedTask._id}`)= completedTask.name
+                    button.delete-task= '×'
         </div>
-
         <footer>
             <p>
                 <a href="https://github.com/ro-mgh/todolist_project" target="_blank">

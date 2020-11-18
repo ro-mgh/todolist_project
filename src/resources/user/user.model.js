@@ -18,6 +18,8 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 )
 
+// bcrypt passw
+
 userSchema.pre('save', function(next) {
   if (!this.isModified('password')) {
     return next()

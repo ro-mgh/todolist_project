@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,20 +8,20 @@
     <script src="project.js" defer></script>
     <title>ToDoList</title>
 </head>
-
 <body>
     <div class="wrapper">
         <header>
             <a href="./todolist">
-            <img class="logo-img" src="./pictures/lion_logo.png" alt="logo"></img>
+            <img class="logo-img" src="pictures/lion_logo.png" alt="logo"></img>
             </a>
         </header>
+
         <div class="background"></div>
         <nav>
             <div class="navigation">
                 <div class="navigation-start">
                     <li>
-                        <a href="./todolist">Let's meet</a>
+                        <a href="./todolist">Let's do it</a>
                     </li>
                 </div>
                 <div class="navigation-end">
@@ -32,23 +31,26 @@
                         <a href="./signup">Signup</a>
                     </li>
                 </div>
-                </ul>
+            </ul>
             </div>
         </nav>
-        <div class="main-field registration">
-       
-            <div class="registration-form"> 
-                <p>Register</p>
+        <div class="main-field">
+
+            <div class="add-new-tasks">
+                <p class="main-headers">Add new task</p>
                 div.error-handler #{error}
-                <form id="registrationForm" action="/signup" method="POST">
-                    <input type="email" name="email" class="signup-email" placeholder="Enter your email" required/>
-                    <input type="password" name="password" class="signup-password" placeholder="Enter your password" required/>
-                    <button class="enter-to-system-button register">Sign up</button>
-                </form>
-                <p></p>
+                <input class="input-task" placeholder="I should do ..." />
+                <button class="add-to-list">Add to list</button>
+            </div>
+
+            <div class="in-progress-tasks">
+                <p class="main-headers">Current tasks</p>  
+            </div>
+
+            <div class="completed-tasks">
+                <p class="main-headers">Completed tasks</p>
             </div>
         </div>
-
         <footer>
             <p>
                 <a href="https://github.com/ro-mgh/todolist_project" target="_blank">

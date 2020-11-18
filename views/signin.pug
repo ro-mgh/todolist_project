@@ -13,7 +13,7 @@
 <body>
     <div class="wrapper">
         <header>
-            <a href="./mytodolist">
+            <a href="./todolist">
             <img class="logo-img" src="./pictures/lion_logo.png" alt="logo"></img>
             </a>
         </header>
@@ -22,7 +22,7 @@
             <div class="navigation">
                 <div class="navigation-start">
                     <li>
-                        <a href="./mytodolist">Let's meet</a>
+                        <a href="./todolist">Let's meet</a>
                     </li>
                 </div>
                 <div class="navigation-end">
@@ -38,9 +38,10 @@
         <div class="main-field registration">
             <div class="registration-form"> 
                 <p>Login</p>
+                div.error-handler #{error}
                 <form id="registrationForm" action="/signin" method="POST">
-                    <input type="email" name="email" class="signin-email" placeholder="Enter your email" />
-                    <input type="password" name="password" class="signin-password" placeholder="Enter your password" />
+                    <input type="email" name="email" class="signin-email" placeholder="Enter your email" required/>
+                    <input type="password" name="password" class="signin-password" placeholder="Enter your password" required/>
                     <button class="enter-to-system-button"> Log in</button>
                     <a href="./signup">I dont have account</a>
                 </form>

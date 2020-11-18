@@ -6,35 +6,77 @@ const completedTasks = document.querySelector('.completed-tasks')
 
 const newTask = document.querySelector('.input-task')
 const addTaskBtn = document.querySelector('.add-to-list')
-addTaskBtn.addEventListener('click', function() {
-  if (newTask.value != '') {
+addTaskBtn.addEventListener('click', async function() {
+  if (newTask.value !== '') {
     idCounter++
-    renderNewTask(newTask.value)
-    newTask.value = ''
+    let taskId = idCounter
+    try {
+      const response = await fetch('/mytodolist/item', {
+        method: 'post',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: newTask.value
+        })
+      })
+      if (response.ok) {
+        const jsonResponse = await response.json()
+        taskId = await jsonResponse.createdId
+      }
+    } catch (err) {
+      console.error(`Error: ${err}`)
+    }
+    renderNewTask(newTask.value, taskId)
     // refreshAddList()
   }
+  newTask.value = ''
 })
+
+// task deletion
+
+const deletebtns = document.querySelectorAll('.delete-task')
+for (let i = 0; i < deletebtns.length; i++) {
+  const currentbtn = deletebtns[i]
+  currentbtn.addEventListener('click', deleteParent)
+}
+
+// task completion/uncompletion
+
+const allTasks = document.querySelectorAll('input[type=checkbox]')
+for (let i = 0; i < allTasks.length; i++) {
+  const currentTask = allTasks[i]
+  currentTask.addEventListener('change', function() {
+    if (this.checked) {
+      // cool func
+      moveTaskTo(currentTask, completedTasks, 'complete')
+    } else {
+      moveTaskTo(currentTask, inProgressTasks, 'active')
+    }
+  })
+}
 
 // to add task to task list
 
-function renderNewTask(value) {
+function renderNewTask(value, taskId) {
   const newTaskDiv = document.createElement('div')
   newTaskDiv.setAttribute('class', 'task-in-progress')
+  newTaskDiv.setAttribute('data-index', taskId)
 
   const newTaskCheckbox = document.createElement('input')
   newTaskCheckbox.setAttribute('type', 'checkbox')
-  newTaskCheckbox.setAttribute('id', `task ${idCounter}`)
+  newTaskCheckbox.setAttribute('id', `task_${taskId}`)
   newTaskCheckbox.addEventListener('change', function() {
     if (this.checked) {
       // cool func
-      moveTaskToComplete(newTaskCheckbox, completedTasks)
+      moveTaskTo(newTaskCheckbox, completedTasks, 'complete')
     } else {
-      moveTaskToComplete(newTaskCheckbox, inProgressTasks)
+      moveTaskTo(newTaskCheckbox, inProgressTasks, 'active')
     }
   })
 
   const newTaskLabel = document.createElement('label')
-  newTaskLabel.setAttribute('for', `task ${idCounter}`)
+  newTaskLabel.setAttribute('for', `task_${taskId}`)
   newTaskLabel.innerText = value
 
   const newDeleteTaskBtn = document.createElement('button')
@@ -50,15 +92,47 @@ function renderNewTask(value) {
 }
 
 // cool functions
+// '/mytodolist/item/' + taskId
 
-function moveTaskToComplete(checkbox, path) {
+async function moveTaskTo(checkbox, path, state) {
   let divToMove = checkbox.parentNode
+  const taskId = divToMove.dataset.index
   path.appendChild(divToMove)
+  try {
+    const response = await fetch('/mytodolist/item/' + taskId, {
+      method: 'put',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: taskId,
+        toChange: {
+          status: state
+        }
+      })
+    })
+  } catch (err) {
+    console.error(`Error: ${err}`)
+  }
 }
 
-function deleteParent() {
+async function deleteParent() {
   const parent = this.parentNode
+  const taskId = parent.dataset.index
   parent.remove()
+  console.log(taskId)
+  console.log()
+  try {
+    const response = await fetch('/mytodolist/item/' + taskId, {
+      method: 'delete',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: taskId
+      })
+    })
+  } catch (err) {
+    console.error(`Error: ${err}`)
+  }
 }
-
-// to add feature for task deletion

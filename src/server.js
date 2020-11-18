@@ -4,12 +4,13 @@ import morgan from 'morgan'
 import config from './config'
 import cors from 'cors'
 import { connect } from './utils/db'
-import userRouter from './resources/user/user.router'
+// import userRouter from './resources/user/user.router'
 import itemRouter from './resources/item/item.router'
-import listRouter from './resources/list/list.router'
-import { signin, signup, protect } from './utils/auth'
+// import listRouter from './resources/list/list.router'
+import { signin, signup, protect, logout } from './utils/auth'
 import path from 'path'
 import cookieParser from 'cookie-parser'
+import { renderMyPage } from './utils/main_page'
 
 export const app = express()
 
@@ -23,17 +24,27 @@ app.use(cookieParser())
 
 app.post('/signup', signup)
 app.post('/signin', signin)
+app.use('/logout', logout)
 
 app.use('/mytodolist', protect)
-app.use('/api/user', userRouter)
-app.use('/api/item', itemRouter)
-app.use('/api/list', listRouter)
+
+// rendering page for user
+
+app.get('/mytodolist', renderMyPage)
+
+// app.use('/api/user', userRouter)
+app.use('/mytodolist/item', itemRouter)
+// app.use('/api/list', listRouter)
 
 // test res**
-app.get('/test', (req, res) => {
-  let cookie = req.cookies.token
-  res.send({ message: cookie })
-})
+// app.put('/test/item', async (req, res) => {
+//   const createdBy = await getIdFromCookie(req.cookies.token)
+//   const id = req.body.id
+//   const change = req.body.toChange
+//   console.log(createdBy)
+//   console.log(id)
+//   console.log(change)
+// })
 // **********
 
 // static to css
@@ -42,7 +53,11 @@ app.use(express.static(path.join(__dirname, '../public')))
 app.set('view engine', 'pug')
 
 app.use('/mytodolist', (req, res) => {
-  res.render('main')
+  res.render('mytodolistpage')
+})
+
+app.use('/todolist', (req, res) => {
+  res.render('todolistpage')
 })
 
 app.use('/signin', (req, res) => {
