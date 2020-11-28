@@ -32,6 +32,8 @@ import { getIdFromCookie } from './auth'
 //   }
 // }
 
+/// if empty or package express validator
+
 export const createOne = model => async (req, res) => {
   const createdBy = await getIdFromCookie(req.cookies.token)
   const name = req.body.name

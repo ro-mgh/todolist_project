@@ -6,29 +6,40 @@ const completedTasks = document.querySelector('.completed-tasks')
 
 const newTask = document.querySelector('.input-task')
 const addTaskBtn = document.querySelector('.add-to-list')
+
+// checking if curren URL ends up ../mytodolist
+
+function urlCheck(url, targetLastEle) {
+  const urlArr = url.split('/')
+  const lastEle = urlArr[urlArr.length - 1]
+  return lastEle === targetLastEle
+}
+
 addTaskBtn.addEventListener('click', async function() {
   if (newTask.value !== '') {
     idCounter++
     let taskId = idCounter
-    try {
-      const response = await fetch('/mytodolist/item', {
-        method: 'post',
-        headers: {
-          'Content-type': 'application/json'
-        },
-        body: JSON.stringify({
-          name: newTask.value
+    if (urlCheck(document.URL, 'mytodolist')) {
+      try {
+        const response = await fetch('/mytodolist/item', {
+          method: 'post',
+          headers: {
+            'Content-type': 'application/json'
+          },
+          body: JSON.stringify({
+            name: newTask.value
+          })
         })
-      })
-      if (response.ok) {
-        const jsonResponse = await response.json()
-        taskId = await jsonResponse.createdId
+        if (response.ok) {
+          const jsonResponse = await response.json()
+          taskId = await jsonResponse.createdId
+        }
+      } catch (err) {
+        console.error(`Error: ${err}`)
       }
-    } catch (err) {
-      console.error(`Error: ${err}`)
     }
-    renderNewTask(newTask.value, taskId)
     // refreshAddList()
+    renderNewTask(newTask.value, taskId)
   }
   newTask.value = ''
 })
@@ -98,21 +109,23 @@ async function moveTaskTo(checkbox, path, state) {
   let divToMove = checkbox.parentNode
   const taskId = divToMove.dataset.index
   path.appendChild(divToMove)
-  try {
-    const response = await fetch('/mytodolist/item/' + taskId, {
-      method: 'put',
-      headers: {
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify({
-        id: taskId,
-        toChange: {
-          status: state
-        }
+  if (urlCheck(document.URL, 'mytodolist')) {
+    try {
+      await fetch('/mytodolist/item/' + taskId, {
+        method: 'put',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          id: taskId,
+          toChange: {
+            status: state
+          }
+        })
       })
-    })
-  } catch (err) {
-    console.error(`Error: ${err}`)
+    } catch (err) {
+      console.error(`Error: ${err}`)
+    }
   }
 }
 
@@ -120,19 +133,19 @@ async function deleteParent() {
   const parent = this.parentNode
   const taskId = parent.dataset.index
   parent.remove()
-  console.log(taskId)
-  console.log()
-  try {
-    const response = await fetch('/mytodolist/item/' + taskId, {
-      method: 'delete',
-      headers: {
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify({
-        id: taskId
+  if (urlCheck(document.URL, 'mytodolist')) {
+    try {
+      await fetch('/mytodolist/item/' + taskId, {
+        method: 'delete',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          id: taskId
+        })
       })
-    })
-  } catch (err) {
-    console.error(`Error: ${err}`)
+    } catch (err) {
+      console.error(`Error: ${err}`)
+    }
   }
 }
