@@ -4,15 +4,11 @@ import controllers from './item.controllers'
 const router = Router()
 
 // /mytodolist/item
-router
-  .route('/')
-  // .get(controllers.getOne)
-  .post(controllers.createOne)
+router.route('/').post(controllers.createOne)
 
-// /api/item/:id
+// /mytodolist/item/:id
 router
   .route('/:id')
-  // .get(controllers.getOne)
   .put(controllers.updateOne)
   .delete(controllers.removeOne)
 
