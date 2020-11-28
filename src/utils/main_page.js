@@ -1,4 +1,3 @@
-import { verifyToken } from './auth'
 import { Item } from '../resources/item/item.model'
 
 export const renderMyPage = async (req, res) => {
