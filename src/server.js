@@ -4,9 +4,7 @@ import morgan from 'morgan'
 import config from './config'
 import cors from 'cors'
 import { connect } from './utils/db'
-// import userRouter from './resources/user/user.router'
 import itemRouter from './resources/item/item.router'
-// import listRouter from './resources/list/list.router'
 import { signin, signup, protect, logout } from './utils/auth'
 import path from 'path'
 import cookieParser from 'cookie-parser'
@@ -31,10 +29,7 @@ app.use('/mytodolist', protect)
 // rendering page for user
 
 app.get('/mytodolist', renderMyPage)
-
-// app.use('/api/user', userRouter)
 app.use('/mytodolist/item', itemRouter)
-// app.use('/api/list', listRouter)
 
 // test res**
 // app.put('/test/item', async (req, res) => {
@@ -72,7 +67,7 @@ export const start = async () => {
   try {
     await connect()
     app.listen(config.port, () => {
-      console.log(`REST API on http://localhost:${config.port}/api`)
+      console.log(`TODO app on http://localhost:${config.port}/todolist`)
     })
   } catch (e) {
     console.error(e)
