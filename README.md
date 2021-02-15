@@ -7,12 +7,12 @@ Hi there! This is your best TODOlist written on Vanila JS
 
 ## Teck stak
 #### Front
-- Pug
+- ![pug](https://pugjs.org/images/favicon-32x32.png) Pug
 #### Server
 - Express
 - REST
 - CRUD
-- MongoDB
+- ![mongo](https://www.mongodb.com/assets/images/global/favicon.ico) MongoDB
 - JWT auth tokens
 
 ![auth](https://insta-project.s3.ap-northeast-2.amazonaws.com/Screenshot+2021-02-15+at+16.28.14.png)
