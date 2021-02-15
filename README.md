@@ -2,7 +2,7 @@
 Hi there! This is your best TODOlist written on VanilaJS/Node 
 
 ## You can
-- Sihnup/signin or use board without credentials
+- Signup/signin or use board without credentials
 - Add new task, complete/uncomplete, delete task from your board
 
 ## Teck stak
