@@ -5,8 +5,8 @@ Hi there! This is your best TODOlist written on VanilaJS/Node
 - Signup/signin or use board without credentials
 - Add new task, complete/uncomplete, delete task from your board
 
-## Teck stack
-#### Front
+## Tech stack
+#### Frontend
 - Vanilla JS
 - ![pug](https://pugjs.org/images/favicon-32x32.png) Pug
 #### Server
